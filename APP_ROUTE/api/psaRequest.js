@@ -23,14 +23,36 @@ async function psaConfigItems (name) {
     let query =     //  POST data/body to query Autotask for a configuration
     {               //    item with the supplied hostname
         "IncludeFields": ["id","companyID","rMMDeviceAuditHostname","rmmDeviceAuditExternalIPAddress","rmmDeviceAuditIPAddress"],
-        "filter": [ {"op": "eq","field": "rmmDeviceAuditHostname", "value": ""} ]
+        "filter": [ {"op": "eq","field": "rmmDeviceAuditHostname", "value": name} ]
     }
-    query["filter"][0]["value"] = name;
     return await psaRequest(apiPath, method, query);
+}
+
+async function psaCompanies () {
+    let apiPath = "Companies/query";
+    let method = "POST";
+    let query =     //  POST data/body to query Autotask for all active companies
+    {
+        "IncludeFields": ["id","companyName"],
+        "filter": [ {"op": "eq","field": "isActive", "value": "true"} ]
+    }
+    return await psaRequest(apiPath, method, query);
+}
+
+async function psaTickets (data) {
+    let apiPath = "Tickets";
+    let method = "POST";
+    return await psaRequest(apiPath, method, data);
 }
 
 module.exports = {
     configItems: async (name) => {
         return await psaConfigItems(name);
+    },
+    companies: async () => {
+        return await psaCompanies();
+    },
+    tickets: async (data) => {
+        return await psaTickets(data);
     }
 }

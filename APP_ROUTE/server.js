@@ -14,7 +14,7 @@ const createTicket = require('.api/createTicket.js');
 
 let configPath = "api/config/config.json";
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-let createTicket = require('api/createTicket.js');
+const createTicket = require('api/createTicket.js');
 
 // Check req.header.authorization
 // If the authorization string is the same as the one from your config file, continue. Otherwise, enter not return to stop the execution.
@@ -41,7 +41,16 @@ app.post('/api', textParser, async function (request, response) => {
     let messages = syslogHelper.log("BITDEFENDER ALERT", body);
     response.sendStatus(200);
     messages.forEach(async function (message, index) => {
-        await createTicket(message);
+        let result = await createTicket(message);
+        if (result.hasOwnProperty('data')) {
+            if (result.data.hasOwnProperty('itemId')) {
+                console.log("Ticket created with id %s", result.data.itemId);
+            } else {
+                console.log("There was a problem creating this ticket");
+            }
+        } else {
+            console.log("There was a problem creating this ticket");
+        }
     });
 });
 

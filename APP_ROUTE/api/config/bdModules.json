@@ -1,0 +1,121 @@
+{
+    "adcloud": {
+        "label": "Cloud AD Integration",
+        "subTypeId": "256"
+    },
+    "aph": {
+        "label": "Antiphishing",
+        "subTypeId": "256"
+    },
+    "av": {
+        "label": "Antimalware",
+        "subTypeId": "258"
+    },
+    "avc": {
+        "label": "Advanced Threat Control (ATC)",
+        "subTypeId": "256"
+    },
+    "dp": {
+        "label": "Data Protection",
+        "subTypeId": "256"
+    },
+    "exchange-malware": {
+        "label": "Exchange Malware Detection",
+        "subTypeId": "256"
+    },
+    "exchange-organization-info": {
+        "label": "Exchange License Usage Limit Has Been",
+        "subTypeId": "256"
+    },
+    "exchange-user-credentials": {
+        "label": "Exchange User Credentials",
+        "subTypeId": "256"
+    },
+    "fw": {
+        "label": "Firewall",
+        "subTypeId": "256"
+    },
+    "hd": {
+        "label": "Hyper Detect event",
+        "subTypeId": "256"
+    },
+    "modules": {
+        "label": "Product Modules Status",
+        "subTypeId": "256"
+    },
+    "network-sandboxing": {
+        "label": "Sandbox Analyzer Detection",
+        "subTypeId": "256"
+    },
+    "registration": {
+        "label": "Product Registration",
+        "subTypeId": "256"
+    },
+    "supa-update-status": {
+        "label": "Outdated Update Server",
+        "subTypeId": "256"
+    },
+    "sva-load": {
+        "label": "Overloaded Security Server",
+        "subTypeId": "256"
+    },
+    "sva": {
+        "label": "Security Server Status",
+        "subTypeId": "256"
+    },
+    "antiexploit": {
+        "label": "Antiexploit Event",
+        "subTypeId": "256"
+    },
+    "network-monitor": {
+        "label": "Network Attack Defense Event",
+        "subTypeId": "256"
+    },
+    "task-status": {
+        "label": "Task Status",
+        "subTypeId": "256"
+    },
+    "uc": {
+        "label": "User Control/Content Control",
+        "subTypeId": "256"
+    },
+    "storage-antimalware": {
+        "label": "Storage Antimalware Event",
+        "subTypeId": "256"
+    },
+    "install": {
+        "label": "Install Agent",
+        "subTypeId": "256"
+    },
+    "uninstall": {
+        "label": "Uninstall Agent",
+        "subTypeId": "256"
+    },
+    "hwid-change": {
+        "label": "Hardware ID Change",
+        "subTypeId": "256"
+    },
+    "endpoint-moved-in": {
+        "label": "Endpoint moved in",
+        "subTypeId": "256"
+    },
+    "endpoint-moved-out": {
+        "label": "Endpoint moved out",
+        "subTypeId": "256"
+    },
+    "troubleshooting-activity": {
+        "label": "Troubleshooting activity",
+        "subTypeId": "256"
+    },
+    "device-control": {
+        "label": "Device Control",
+        "subTypeId": "256"
+    },
+    "ransomware-mitigation": {
+        "label": "Ransomware activity detection",
+        "subTypeId": "256"
+    },
+    "new-incident": {
+        "label": "New Incident",
+        "subTypeId": "256"}
+}
