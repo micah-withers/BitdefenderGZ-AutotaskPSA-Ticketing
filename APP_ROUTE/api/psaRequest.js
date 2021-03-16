@@ -1,20 +1,36 @@
+const fs =require('fs');
 const request = require('axiosRequest.js');
-let psaApiPath = "config/psaApi.json";
-const psaApi = JSON.parse(fs.readFileSync(psaApiPath, 'utf8'));
-async function psaRequest (region, apiPath, method, data){
-    let url = "https://webservices"+config.region+".autotask.net/atservicesrest/v1.0/"+apiPath;
+let psaApiPath = "config/psaApiHeaders.json";
+const psaApiHeaders = JSON.parse(fs.readFileSync(psaApiPath, 'utf8'));
+
+async function psaRequest (apiPath, method, data){
+    let url = "https://webservices"+psaApiHeaders.region+".autotask.net/atservicesrest/v1.0/"+apiPath;
     let headers = {
-        "ApiIntegrationcode": psaApi.api_integration_code,  // API tracking identifier
-        "UserName": psaApi.username,  // API-only username
-        "Secret": psaApi.secret,  // API-only password
+        "ApiIntegrationcode": psaApiHeaders.api_integration_code,  // API tracking identifier
+        "UserName": psaApiHeaders.username,  // API-only username
+        "Secret": psaApiHeaders.secret,  // API-only password
         "Content-Type": "application/json"
     }
-    console.log("Sending %s request...", method);
+    console.log("Sending %s request to %s...", method, apiPath);
     let result = await request(url, method, data, headers);
-    console.log(`Request sent to ${options.url} with status code ${res.status}`);
+    console.log("Status code %s", result.status);
     return result;
 }
 
-module.exports = async function (region, apiPath, method, data) => {
-    return await psaRequest(region, apiPath, method, data);
+async function psaConfigItems (name) {
+    let apiPath = "ConfigurationItems/query";
+    let method = "POST";
+    let query =     //  POST data/body to query Autotask for a configuration
+    {               //    item with the supplied hostname
+        "IncludeFields": ["id","companyID","rMMDeviceAuditHostname","rmmDeviceAuditExternalIPAddress","rmmDeviceAuditIPAddress"],
+        "filter": [ {"op": "eq","field": "rmmDeviceAuditHostname", "value": ""} ]
+    }
+    query["filter"][0]["value"] = name;
+    return await psaRequest(apiPath, method, query);
+}
+
+module.exports = {
+    configItems: async (name) => {
+        return await psaConfigItems(name);
+    }
 }

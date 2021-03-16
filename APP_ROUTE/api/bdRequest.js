@@ -1,10 +1,11 @@
+const fs =require('fs');
 const request = require('axiosRequest.js');
-let bdApiPath = "config/bdApi.json";
-const psaApi = JSON.parse(fs.readFileSync(psaApiPath, 'utf8'));
+let bdApiPath = "config/bdApiHeaders.json";
+const bdApiHeaders = JSON.parse(fs.readFileSync(bdApiPath, 'utf8'));
 async function psaRequest (region, apiPath, method, data){
     let url = "https://webservices"+config.region+".autotask.net/atservicesrest/v1.0/"+apiPath;
     let headers = {
-        "Authorization": bdApi.authentication_string,  // API tracking identifier
+        "Authorization": bdApiHeaders.authentication_string,  // API tracking identifier
         "Content-Type": "application/json"
     }
     console.log("Sending %s request...", method);

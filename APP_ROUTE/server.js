@@ -14,6 +14,7 @@ const createTicket = require('.api/createTicket.js');
 
 let configPath = "api/config/config.json";
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+let createTicket = require('api/createTicket.js');
 
 // Check req.header.authorization
 // If the authorization string is the same as the one from your config file, continue. Otherwise, enter not return to stop the execution.
