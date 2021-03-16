@@ -1,0 +1,14 @@
+{
+"name": "app-name",
+"version": "1.0.0",
+"private": true,
+"description": "client that will be able to receive authenticated POST request and write each row in the local or remote syslog",
+"main": "server.js",
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"author": "",
+"license": "MIT",
+"dependencies": {
+}
+}

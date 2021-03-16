@@ -1,0 +1,6 @@
+{
+"port": 3000,
+"syslog_port": 514,
+"transport": "Tcp",
+"target": "127.0.0.1"
+}
