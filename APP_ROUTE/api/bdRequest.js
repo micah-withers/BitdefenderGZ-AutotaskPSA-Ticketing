@@ -1,6 +1,6 @@
 const fs =require('fs');
 const request = require('axiosRequest.js');
-let bdApiPath = "config/bdApiHeaders.json";
+let bdApiPath = "json/bdApiHeaders.json";
 const bdApiHeaders = JSON.parse(fs.readFileSync(bdApiPath, 'utf8'));
 
 async function bdRequest (region, apiPath, method, data){

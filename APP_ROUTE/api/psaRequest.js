@@ -1,6 +1,6 @@
 const fs =require('fs');
 const request = require('axiosRequest.js');
-let psaApiPath = "config/psaApiHeaders.json";
+let psaApiPath = "json/psaApiHeaders.json";
 const psaApiHeaders = JSON.parse(fs.readFileSync(psaApiPath, 'utf8'));
 
 async function psaRequest (apiPath, method, data){
