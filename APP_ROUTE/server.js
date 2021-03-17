@@ -35,7 +35,7 @@ app.use('/api', (req, res, next) => {
 
 // Add a route that answers to the request coming from Event Push Service API. Parse the body and log it using
 // url: http://{server_url}:{port}/api/
-app.post('/api', textParser, async function (request, response) => {
+app.post('/api', textParser, async (request, response) => {
     const body = request.body;
     let syslogHelper = new EpsSyslogHelper(config);
     let messages = syslogHelper.log("BITDEFENDER ALERT", body);

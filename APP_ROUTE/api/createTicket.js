@@ -47,6 +47,21 @@ function unwrapData(data, key_delimit) {
     return string;
 }
 
+function sort(string, order, delimit) {
+    let array = string.split(delimit);
+    order.forEach((orderLabel, orderIndex) => {
+        array.forEach((label, index) => {
+            if (label.includes(orderLabel) && index != orderIndex) {
+                let temp = array[orderIndex];
+                array[orderIndex] = array[index];
+                array[index] = temp;
+                return;
+            }
+        });
+    });
+    return array.join(delimit);
+}
+
 // Take a JSON (string) message from Bitdefender and identify
 //   the parent company and configuration item in Autotask to
 //   then create a ticket
@@ -131,7 +146,17 @@ async function createTicket (message) {
     let bdMod = bdModules[bdAlert.module];
     ticket["title"] = `${bdMod.label} event on ${bdComputerName}`
     //  Transform Bitdefender message (key:value pairs) into readable string
-    ticket["description"] = unwrapData(bdMsg, '_');
+    //    also sorts if sort_order contains an array with values matching
+    //    the key for each line of the unwrapped bdMsg (e.g. ["Final Status"]
+    //    for the final_status field if you want that to be the first line of
+    //    the ticket description. Each value after "Final Status" will be second,
+    //    third, fourth, etc. Any fields not in the sort_order will still be in
+    //    the description but will not be sorted)
+    let description = unwrapData(bdMsg, '_');
+    if (bdMod.hasOwnProperty("sort_order")) {
+        description = sort(description, bdMod.sort_order, '\n');
+    }
+    ticket["description"] = description;
     //  Set due date -- REQUIRED
     let date = new Date();
     date.setDate(date.getDate() + 14);  //  Sets date for two weeks from now (14 days)
