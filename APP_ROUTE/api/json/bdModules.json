@@ -33,7 +33,7 @@
     },
     "fw": {
         "label": "Firewall",
-        "subIssueType": "256"
+        "subIssueType": ""
     },
     "hd": {
         "label": "Hyper Detect event",
